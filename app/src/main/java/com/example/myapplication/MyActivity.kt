@@ -31,19 +31,13 @@ class MyActivity : AppCompatActivity() {
             adapter.delItem(adapter.itemCount - 1)
         }
 
-        if (savedInstanceState != null) {
-            val temp = savedInstanceState.getIntegerArrayList("Items")
-            if (temp != null) {
-                adapter.setItem(temp)
-            } else {
-                adapter.setItem(listOf())
-            }
+        if (savedInstanceState == null) {
+            adapter.setItem(listOf())
         }
     }
 
     override fun onSaveInstanceState(outState: Bundle) {
         super.onSaveInstanceState(outState)
-        outState.putIntegerArrayList("Items" , adapter.getItems())
     }
 
     override fun onRestoreInstanceState(savedInstanceState: Bundle) {
