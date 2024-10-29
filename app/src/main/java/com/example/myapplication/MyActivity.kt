@@ -13,31 +13,37 @@ class MyActivity : AppCompatActivity() {
 
     lateinit var recyclerView : RecyclerView
     lateinit var fab : FloatingActionButton
+    lateinit var fab2 : FloatingActionButton
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.main_activity)
         recyclerView = findViewById(R.id.recycle_view)
         fab = findViewById(R.id.fab)
-
+        fab2 = findViewById(R.id.fab2)
         recyclerView.adapter = adapter
 
         fab.setOnClickListener {
             adapter.addItem(adapter.itemCount + 1)
         }
 
-        adapter.setItem(listOf())
-        if (savedInstanceState != null) {
-            for (i in 1 .. savedInstanceState.getInt("ItemCount")) {
-                adapter.addItem(i)
-            }
+        fab2.setOnClickListener {
+            adapter.delItem(adapter.itemCount - 1)
         }
 
+        if (savedInstanceState != null) {
+            val temp = savedInstanceState.getIntegerArrayList("Items")
+            if (temp != null) {
+                adapter.setItem(temp)
+            } else {
+                adapter.setItem(listOf())
+            }
+        }
     }
 
     override fun onSaveInstanceState(outState: Bundle) {
         super.onSaveInstanceState(outState)
-        outState.putInt("ItemCount" , adapter.itemCount)
+        outState.putIntegerArrayList("Items" , adapter.getItems())
     }
 
     override fun onRestoreInstanceState(savedInstanceState: Bundle) {

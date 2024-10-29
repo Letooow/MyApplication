@@ -3,7 +3,8 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_height="match_parent"
     android:layout_width="match_parent"
-    android:background="@color/gray" >
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/gray">
 
 
 
@@ -25,6 +26,14 @@
         android:layout_height="56dp"
         android:layout_gravity="bottom|end"
         android:layout_margin="16dp" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fab2"
+        android:layout_width="56dp"
+        android:layout_height="56dp"
+        android:layout_gravity="bottom|start"
+        android:layout_margin="16dp"
+        app:backgroundTint="@color/red" />
 
 
 </FrameLayout>
